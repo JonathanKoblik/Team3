@@ -148,13 +148,31 @@ intl_cs_df=alpaca_df(tickers)
 # In[5]:
 
 
+#===================================================================================================
+
+# MONTE CARLO CSV INPUT
+# Read csv data files
+intl_cc_simulated_MEAN_returns_df = pd.read_csv(Path("CC.csv"),skiprows=0).dropna()
+intl_cm_simulated_MEAN_returns_df = pd.read_csv(Path("CM.csv"),skiprows=0).dropna()
+intl_cg_simulated_MEAN_returns_df = pd.read_csv(Path("CG.csv"),skiprows=0).dropna()
+intl_ca_simulated_MEAN_returns_df = pd.read_csv(Path("CA.csv"),skiprows=0).dropna()
+intl_cs_simulated_MEAN_returns_df = pd.read_csv(Path("CS.csv"),skiprows=0).dropna()
+# intl_ca_simulated_MEAN_returns_df
+#===================================================================================================
+# LIVE MONTE CARLO CURRENTLY DISABLED. USE SCV FILES INSTEAD.
+#===================================================================================================
+
+
+# In[6]:
+
+
 # Set Parmeters for Monte Carlo Simulations
 
 #Number of Simulations
-ns=10
+#ns=10
 
 #Number of Trading Days
-ntd=252*1
+#ntd=252*1
 
 # Set initial investment
 initial_investment = 10000
@@ -171,29 +189,31 @@ initial_investment = 10000
 
 intl_cc_title="International Core Conservative Allocation"
 
-MC_INTL_CC = MCSimulation(
-    portfolio_data = intl_cc_df,
-    weights = intl_cc_w,
-    num_simulation = ns,
-    num_trading_days = ntd
-)
 
-# Run a Monte Carlo simulation to forecast cumulative returns
-MC_INTL_CC.calc_cumulative_return()
+# MC_INTL_CC = MCSimulation(
+#     portfolio_data = intl_cc_df,
+#     weights = intl_cc_w,
+#     num_simulation = ns,
+#     num_trading_days = ntd
+# )
 
-# Fetch summary statistics from the Monte Carlo simulation results
-intl_cc_tbl = MC_INTL_CC.summarize_cumulative_return()
 
-# Compute mean from the simulated daily returns
-intl_cc_MEAN_returns_data = {"mean": list(MC_INTL_CC.simulated_return.mean(axis=1)),}
+# # Run a Monte Carlo simulation to forecast cumulative returns
+# MC_INTL_CC.calc_cumulative_return()
 
-# Create a DataFrame with the mean statistics
-intl_cc_simulated_MEAN_returns_df = pd.DataFrame(intl_cc_MEAN_returns_data)
-intl_cc_simulated_MEAN_returns_df=intl_cc_simulated_MEAN_returns_df.rename(columns={"mean":"Intl Core Conservative"})
+# # Fetch summary statistics from the Monte Carlo simulation results
+# intl_cc_tbl = MC_INTL_CC.summarize_cumulative_return()
+
+# # Compute mean from the simulated daily returns
+# intl_cc_MEAN_returns_data = {"mean": list(MC_INTL_CC.simulated_return.mean(axis=1)),}
+
+# # Create a DataFrame with the mean statistics
+# intl_cc_simulated_MEAN_returns_df = pd.DataFrame(intl_cc_MEAN_returns_data)
+# intl_cc_simulated_MEAN_returns_df=intl_cc_simulated_MEAN_returns_df.rename(columns={"mean":"Intl Core Conservative"})
 
 
 # Use the `plot` function to visually analyze the trajectory 
-#intl_cc_simulated_MEAN_returns_df.plot(title=f"Simulated Daily Returns Behavior of {intl_cc_title} Portfolio")
+#intl_cc_simulated_MEAN_returns_df.plot(title=f"Simulated Daily Returns Behavior of {intl_cc_title} Portfolio")"""
 
 # Multiply an initial investment by the daily returns of simulated stock prices to return the progression of daily returns in terms of money
 intl_cc_cumulative_pnl = initial_investment * intl_cc_simulated_MEAN_returns_df
@@ -202,7 +222,7 @@ intl_cc_cumulative_pnl = initial_investment * intl_cc_simulated_MEAN_returns_df
 #intl_cc_cumulative_pnl.plot(title=f"Simulated Outcomes Behavior of {intl_cc_title} Portfolio Over the Next 1 Year")
 
 
-# In[6]:
+# In[7]:
 
 
 #2
@@ -213,25 +233,25 @@ intl_cc_cumulative_pnl = initial_investment * intl_cc_simulated_MEAN_returns_df
 
 intl_cm_title="International Core Moderate Allocation"
 
-MC_INTL_CM = MCSimulation(
-    portfolio_data = intl_cm_df,
-    weights = intl_cm_w,
-    num_simulation = ns,
-    num_trading_days = ntd
-)
+# MC_INTL_CM = MCSimulation(
+#     portfolio_data = intl_cm_df,
+#     weights = intl_cm_w,
+#     num_simulation = ns,
+#     num_trading_days = ntd
+# )
 
-# Run a Monte Carlo simulation to forecast cumulative returns
-MC_INTL_CM.calc_cumulative_return()
+# # Run a Monte Carlo simulation to forecast cumulative returns
+# MC_INTL_CM.calc_cumulative_return()
 
-# Fetch summary statistics from the Monte Carlo simulation results
-intl_cm_tbl = MC_INTL_CM.summarize_cumulative_return()
+# # Fetch summary statistics from the Monte Carlo simulation results
+# intl_cm_tbl = MC_INTL_CM.summarize_cumulative_return()
 
-# Compute mean from the simulated daily returns
-intl_cm_MEAN_returns_data = {"mean": list(MC_INTL_CM.simulated_return.mean(axis=1)),}
+# # Compute mean from the simulated daily returns
+# intl_cm_MEAN_returns_data = {"mean": list(MC_INTL_CM.simulated_return.mean(axis=1)),}
 
-# Create a DataFrame with the mean statistics
-intl_cm_simulated_MEAN_returns_df = pd.DataFrame(intl_cm_MEAN_returns_data)
-intl_cm_simulated_MEAN_returns_df=intl_cm_simulated_MEAN_returns_df.rename(columns={"mean":"Intl Core Moderate"})
+# # Create a DataFrame with the mean statistics
+# intl_cm_simulated_MEAN_returns_df = pd.DataFrame(intl_cm_MEAN_returns_data)
+# intl_cm_simulated_MEAN_returns_df=intl_cm_simulated_MEAN_returns_df.rename(columns={"mean":"Intl Core Moderate"})
 
 
 # Use the `plot` function to visually analyze the trajectory 
@@ -244,7 +264,7 @@ intl_cm_cumulative_pnl = initial_investment * intl_cm_simulated_MEAN_returns_df
 #intl_cm_cumulative_pnl.plot(title=f"Simulated Outcomes Behavior of {intl_cm_title} Portfolio Over the Next 1 Year")
 
 
-# In[7]:
+# In[8]:
 
 
 #3
@@ -255,25 +275,25 @@ intl_cm_cumulative_pnl = initial_investment * intl_cm_simulated_MEAN_returns_df
 
 intl_cg_title="International Core Growth Allocation"
 
-MC_INTL_CG = MCSimulation(
-    portfolio_data = intl_cg_df,
-    weights = intl_cg_w,
-    num_simulation = ns,
-    num_trading_days = ntd
-)
+# MC_INTL_CG = MCSimulation(
+#     portfolio_data = intl_cg_df,
+#     weights = intl_cg_w,
+#     num_simulation = ns,
+#     num_trading_days = ntd
+# )
 
-# Run a Monte Carlo simulation to forecast cumulative returns
-MC_INTL_CG.calc_cumulative_return()
+# # Run a Monte Carlo simulation to forecast cumulative returns
+# MC_INTL_CG.calc_cumulative_return()
 
-# Fetch summary statistics from the Monte Carlo simulation results
-intl_cg_tbl = MC_INTL_CG.summarize_cumulative_return()
+# # Fetch summary statistics from the Monte Carlo simulation results
+# intl_cg_tbl = MC_INTL_CG.summarize_cumulative_return()
 
-# Compute mean from the simulated daily returns
-intl_cg_MEAN_returns_data = {"mean": list(MC_INTL_CG.simulated_return.mean(axis=1)),}
+# # Compute mean from the simulated daily returns
+# intl_cg_MEAN_returns_data = {"mean": list(MC_INTL_CG.simulated_return.mean(axis=1)),}
 
-# Create a DataFrame with the mean statistics
-intl_cg_simulated_MEAN_returns_df = pd.DataFrame(intl_cg_MEAN_returns_data)
-intl_cg_simulated_MEAN_returns_df=intl_cg_simulated_MEAN_returns_df.rename(columns={"mean":"Intl Core Growth"})
+# # Create a DataFrame with the mean statistics
+# intl_cg_simulated_MEAN_returns_df = pd.DataFrame(intl_cg_MEAN_returns_data)
+# intl_cg_simulated_MEAN_returns_df=intl_cg_simulated_MEAN_returns_df.rename(columns={"mean":"Intl Core Growth"})
 
 # Use the `plot` function to visually analyze the trajectory 
 #intl_cg_simulated_MEAN_returns_df.plot(title=f"Simulated Daily Returns Behavior of {intl_cg_title} Portfolio")
@@ -285,7 +305,7 @@ intl_cg_cumulative_pnl = initial_investment * intl_cg_simulated_MEAN_returns_df
 #intl_cg_cumulative_pnl.plot(title=f"Simulated Outcomes Behavior of {intl_cg_title} Portfolio Over the Next 1 Year")
 
 
-# In[8]:
+# In[9]:
 
 
 #4
@@ -296,28 +316,28 @@ intl_cg_cumulative_pnl = initial_investment * intl_cg_simulated_MEAN_returns_df
 
 intl_ca_title="International Core Aggressive Allocation"
 
-MC_INTL_CA = MCSimulation(
-    portfolio_data = intl_ca_df,
-    weights = intl_ca_w,
-    num_simulation = ns,
-    num_trading_days = ntd
-)
+# MC_INTL_CA = MCSimulation(
+#     portfolio_data = intl_ca_df,
+#     weights = intl_ca_w,
+#     num_simulation = ns,
+#     num_trading_days = ntd
+# )
 
-# Run a Monte Carlo simulation to forecast cumulative returns
-MC_INTL_CA.calc_cumulative_return()
+# # Run a Monte Carlo simulation to forecast cumulative returns
+# MC_INTL_CA.calc_cumulative_return()
 
-# Fetch summary statistics from the Monte Carlo simulation results
-intl_ca_tbl = MC_INTL_CA.summarize_cumulative_return()
+# # Fetch summary statistics from the Monte Carlo simulation results
+# intl_ca_tbl = MC_INTL_CA.summarize_cumulative_return()
 
-# Compute mean from the simulated daily returns
-intl_ca_MEAN_returns_data = {"mean": list(MC_INTL_CA.simulated_return.mean(axis=1)),}
+# # Compute mean from the simulated daily returns
+# intl_ca_MEAN_returns_data = {"mean": list(MC_INTL_CA.simulated_return.mean(axis=1)),}
 
-# Create a DataFrame with the mean statistics
-intl_ca_simulated_MEAN_returns_df = pd.DataFrame(intl_ca_MEAN_returns_data)
-intl_ca_simulated_MEAN_returns_df=intl_ca_simulated_MEAN_returns_df.rename(columns={"mean":"Intl Core Aggressive"})
+# # Create a DataFrame with the mean statistics
+# intl_ca_simulated_MEAN_returns_df = pd.DataFrame(intl_ca_MEAN_returns_data)
+# intl_ca_simulated_MEAN_returns_df=intl_ca_simulated_MEAN_returns_df.rename(columns={"mean":"Intl Core Aggressive"})
 
-# Use the `plot` function to visually analyze the trajectory 
-#intl_ca_simulated_MEAN_returns_df.plot(title=f"Simulated Daily Returns Behavior of {intl_ca_title} Portfolio")
+# # Use the `plot` function to visually analyze the trajectory 
+# #intl_ca_simulated_MEAN_returns_df.plot(title=f"Simulated Daily Returns Behavior of {intl_ca_title} Portfolio")
 
 # Multiply an initial investment by the daily returns of simulated stock prices to return the progression of daily returns in terms of money
 intl_ca_cumulative_pnl = initial_investment * intl_ca_simulated_MEAN_returns_df
@@ -326,7 +346,7 @@ intl_ca_cumulative_pnl = initial_investment * intl_ca_simulated_MEAN_returns_df
 #intl_ca_cumulative_pnl.plot(title=f"Simulated Outcomes Behavior of {intl_ca_title} Portfolio Over the Next 1 Year")
 
 
-# In[9]:
+# In[10]:
 
 
 #5
@@ -337,28 +357,28 @@ intl_ca_cumulative_pnl = initial_investment * intl_ca_simulated_MEAN_returns_df
 
 intl_cs_title="Core S&P Total US Stock Market"
 
-MC_INTL_CS = MCSimulation(
-    portfolio_data = intl_cs_df,
-    weights = intl_cs_w,
-    num_simulation = ns,
-    num_trading_days = ntd
-)
+# MC_INTL_CS = MCSimulation(
+#     portfolio_data = intl_cs_df,
+#     weights = intl_cs_w,
+#     num_simulation = ns,
+#     num_trading_days = ntd
+# )
 
-# Run a Monte Carlo simulation to forecast cumulative returns
-MC_INTL_CS.calc_cumulative_return()
+# # Run a Monte Carlo simulation to forecast cumulative returns
+# MC_INTL_CS.calc_cumulative_return()
 
-# Fetch summary statistics from the Monte Carlo simulation results
-intl_cs_tbl = MC_INTL_CS.summarize_cumulative_return()
+# # Fetch summary statistics from the Monte Carlo simulation results
+# intl_cs_tbl = MC_INTL_CS.summarize_cumulative_return()
 
-# Compute mean from the simulated daily returns
-intl_cs_MEAN_returns_data = {"mean": list(MC_INTL_CS.simulated_return.mean(axis=1)),}
+# # Compute mean from the simulated daily returns
+# intl_cs_MEAN_returns_data = {"mean": list(MC_INTL_CS.simulated_return.mean(axis=1)),}
 
-# Create a DataFrame with the mean statistics
-intl_cs_simulated_MEAN_returns_df = pd.DataFrame(intl_cs_MEAN_returns_data)
-intl_cs_simulated_MEAN_returns_df=intl_cs_simulated_MEAN_returns_df.rename(columns={"mean":"Intl Core Equity All"})
+# # Create a DataFrame with the mean statistics
+# intl_cs_simulated_MEAN_returns_df = pd.DataFrame(intl_cs_MEAN_returns_data)
+# intl_cs_simulated_MEAN_returns_df=intl_cs_simulated_MEAN_returns_df.rename(columns={"mean":"Intl Core Equity All"})
 
-# Use the `plot` function to visually analyze the trajectory 
-#intl_cs_simulated_MEAN_returns_df.plot(title=f"Simulated Daily Returns Behavior of {intl_cs_title} Portfolio")
+# # Use the `plot` function to visually analyze the trajectory 
+# #intl_cs_simulated_MEAN_returns_df.plot(title=f"Simulated Daily Returns Behavior of {intl_cs_title} Portfolio")
 
 # Multiply an initial investment by the daily returns of simulated stock prices to return the progression of daily returns in terms of money
 intl_cs_cumulative_pnl = initial_investment * intl_cs_simulated_MEAN_returns_df
@@ -367,7 +387,7 @@ intl_cs_cumulative_pnl = initial_investment * intl_cs_simulated_MEAN_returns_df
 #intl_cs_cumulative_pnl.plot(title=f"Simulated Outcomes Behavior of {intl_cs_title} Portfolio Over the Next 1 Year")
 
 
-# In[10]:
+# In[11]:
 
 
 # Create a Data Frame that contains the MEAN simulated returns
@@ -377,7 +397,7 @@ mean_forecasts_df = pd.concat([intl_cc_simulated_MEAN_returns_df,
                           intl_ca_simulated_MEAN_returns_df, 
                           intl_cs_simulated_MEAN_returns_df], axis=1, join="inner")
 # new_pd = pd.concat(mean_df_list)
-mean_forecasts_df.plot(figsize=(15,10), logy=True)
+#mean_forecasts_df.plot(figsize=(15,10), logy=True)
 
 
 
@@ -391,7 +411,7 @@ mean_pnl_forecasts_df = pd.concat([intl_cc_cumulative_pnl,
 #mean_pnl_forecasts_df.plot(figsize=(15,10), logy=False)
 
 
-# In[11]:
+# In[12]:
 
 
 # Portfolio Geographical Mix
@@ -466,7 +486,7 @@ aok_ac_plotly=aok_ac.reset_index()
 # fig_aok_ac.show()
 
 
-# In[12]:
+# In[13]:
 
 
 # ----------------------------------------------------------------------------------
@@ -490,7 +510,7 @@ aom_gm_plotly["Country"]=["USA","JPN","CHN","GBR","FRA","CAN","DEU","CHE","AUS",
 #aom_gm_plotly.head(10)
 
 
-# In[13]:
+# In[14]:
 
 
 # aom_gm_plotly=aom_gm.reset_index()
@@ -516,7 +536,7 @@ aom_ac_plotly=aom_ac.reset_index()
 # fig_aom_ac.show()
 
 
-# In[14]:
+# In[15]:
 
 
 # ----------------------------------------------------------------------------------
@@ -565,7 +585,7 @@ aor_ac_plotly=aor_ac.reset_index()
 # fig_aor_ac.show()
 
 
-# In[15]:
+# In[16]:
 
 
 # ----------------------------------------------------------------------------------
@@ -612,7 +632,7 @@ aoa_ac_plotly=aoa_ac.reset_index()
 # fig_aoa_ac.show()
 
 
-# In[16]:
+# In[17]:
 
 
 # ----------------------------------------------------------------------------------
@@ -660,7 +680,7 @@ itot_ac_plotly=itot_ac.reset_index()
 #itot_ac_plotly
 
 
-# In[17]:
+# In[18]:
 
 
 # ----------------------------------------------------------------------------------
@@ -712,7 +732,7 @@ aok_returns.drop(columns=['Open', 'High', 'Low', 'Adj Close', 'Volume'], axis=1,
 #aok_returns.head(10)
 
 
-# In[18]:
+# In[19]:
 
 
 # 2. AOM - iShares Core Moderate ETF Allocation
@@ -752,7 +772,7 @@ aom_returns.drop(columns=['Open', 'High', 'Low', 'Adj Close', 'Volume'], axis=1,
 #aom_returns.head(10)
 
 
-# In[19]:
+# In[20]:
 
 
 # 3. AOR - iShares Core Growth ETF Allocation
@@ -792,7 +812,7 @@ aor_returns.drop(columns=['Open', 'High', 'Low', 'Adj Close', 'Volume'], axis=1,
 #aor_returns.head(10)
 
 
-# In[20]:
+# In[21]:
 
 
 # 4. AOA - iShares Core Aggressive ETF Allocation
@@ -831,7 +851,7 @@ aoa_returns.drop(columns=['Open', 'High', 'Low', 'Adj Close', 'Volume'], axis=1,
 #aoa_returns.head(10)
 
 
-# In[21]:
+# In[22]:
 
 
 # 5. ITOT - iShares Core S&P Total U.S. Stock Market ETF
@@ -869,7 +889,7 @@ itot_returns.drop(columns=['Open', 'High', 'Low', 'Adj Close', 'Volume'], axis=1
 #itot_returns.head(10)
 
 
-# In[22]:
+# In[23]:
 
 
 # Combine all ETF's in a single DataFrame
@@ -926,7 +946,7 @@ daily_returns_aom.dropna(inplace = True)
 #daily_returns_aom.plot(figsize = (20,10))
 
 
-# In[23]:
+# In[24]:
 
 
 # 3. AOR - iShares Core Growth ETF Allocation
@@ -946,7 +966,7 @@ daily_returns_aor.dropna(inplace = True)
 #daily_returns_aor.plot(figsize = (20,10))
 
 
-# In[24]:
+# In[25]:
 
 
 # 4. AOA - iShares Core Aggressive ETF Allocation
@@ -962,7 +982,7 @@ daily_returns_aoa.dropna(inplace = True)
 #daily_returns_aoa.head(10)
 
 
-# In[25]:
+# In[26]:
 
 
 # 5. ITOT - iShares Core S&P Total U.S. Stock Market ETF
@@ -999,7 +1019,7 @@ daily_returns_etf.dropna(inplace = True)
 #daily_returns_etf.plot(figsize = (20,10))
 
 
-# In[26]:
+# In[27]:
 
 
 # Calculate and Plot cumulative returns for each ETF.
@@ -1014,7 +1034,7 @@ df_cum_returns_aok = (1+ daily_returns_aok).cumprod()
 #print(df_cum_returns_aok.tail())
 
 
-# In[27]:
+# In[28]:
 
 
 # 2. AOM - iShares Core Moderate ETF Allocation
@@ -1030,7 +1050,7 @@ df_cum_returns_aom = (1+ daily_returns_aom).cumprod()
 #print(df_cum_returns_aom.tail())
 
 
-# In[28]:
+# In[29]:
 
 
 # 3. AOR - iShares Core Growth ETF Allocation
@@ -1046,7 +1066,7 @@ df_cum_returns_aor = (1+ daily_returns_aor).cumprod()
 #print(df_cum_returns_aor.tail())
 
 
-# In[29]:
+# In[30]:
 
 
 # 4. AOA - iShares Core Aggressive ETF Allocation
@@ -1062,7 +1082,7 @@ df_cum_returns_aoa = (1+ daily_returns_aoa).cumprod()
 #print(df_cum_returns_aoa.tail())
 
 
-# In[30]:
+# In[31]:
 
 
 # 5. ITOT - iShares Core S&P Total U.S. Stock Market ETF
@@ -1078,7 +1098,7 @@ df_cum_returns_itot = (1+ daily_returns_itot).cumprod()
 #print(df_cum_returns_itot.tail())
 
 
-# In[31]:
+# In[32]:
 
 
 # Calculate and Plot cumulative returns for all 5 ETF's together.
@@ -1094,7 +1114,7 @@ df_cum_returns_etf = (1+ daily_returns_etf).cumprod()
 #print(df_cum_returns_etf.tail())
 
 
-# In[32]:
+# In[33]:
 
 
 # ii). Risk Analysis
@@ -1116,7 +1136,7 @@ df_cum_returns_etf = (1+ daily_returns_etf).cumprod()
 #daily_returns_etf.plot(kind = "box", figsize = (20,10))
 
 
-# In[33]:
+# In[34]:
 
 
 # Calculate Standard Deviations
@@ -1134,7 +1154,7 @@ df_annualized_std_etf = df_daily_std_etf*np.sqrt(252)
 # df_annualized_std_etf
 
 
-# In[34]:
+# In[35]:
 
 
 # Rolling Statistics
@@ -1176,13 +1196,13 @@ def BTR(pv,aok,start,end,shares,cash,rf=0):
     return beta,Treynor_Ratio
 
 
-# In[35]:
+# In[36]:
 
 
 #intl_cm_simulated_MEAN_returns_df.head()
 
 
-# In[36]:
+# In[37]:
 
 
 #Vishals work here
@@ -1211,7 +1231,7 @@ figaom.add_trace(go.Pie(labels=aom_gm_plotly["Country"],values=aom_gm_plotly["Ma
 
 figaom.add_trace(go.Scatter(y=intl_cm_simulated_MEAN_returns_df["Intl Core Moderate"]),row=2,col=1)
               
-figaom.add_trace(go.Scatter(y=daily_returns_aom["AOM"]),row=2,col=2)
+figaom.add_trace(go.Scatter(y=df_cum_returns_aom["AOM"]),row=2,col=2)
 
 #fig.add_trace(go.Scatter(y=df_cum_returns_aok["AOM"],mode="lines",
 #              row=3, col=1))
@@ -1221,7 +1241,7 @@ figaom.update_layout(height=700, showlegend=True)
 #figaom.show()
 
 
-# In[37]:
+# In[38]:
 
 
 #AOR layout
@@ -1249,7 +1269,7 @@ figaor.update_layout(height=700, showlegend=True)
 #figaor.show()
 
 
-# In[38]:
+# In[39]:
 
 
 #AOK layout
@@ -1277,7 +1297,7 @@ figaok.update_layout(height=700, showlegend=True)
 #figaok.show()
 
 
-# In[39]:
+# In[40]:
 
 
 #AOA layout
@@ -1305,7 +1325,7 @@ figaoa.update_layout(height=700, showlegend=True)
 #figaoa.show()
 
 
-# In[40]:
+# In[41]:
 
 
 #ITOT Layout
@@ -1333,7 +1353,18 @@ figitot.update_layout(height=700, showlegend=True)
 #figitot.show()
 
 
-# In[44]:
+# In[42]:
+
+
+# Read csv data files
+aok_hold = pd.read_csv(Path("AOK_holdings.csv"),skiprows=9).dropna().iloc[0:9,0:6].set_index("Ticker")
+aom_hold = pd.read_csv(Path("AOM_holdings.csv"),skiprows=9).dropna().iloc[0:9,0:6].set_index("Ticker")
+aor_hold = pd.read_csv(Path("AOR_holdings.csv"),skiprows=9).dropna().iloc[0:9,0:6].set_index("Ticker")
+aoa_hold = pd.read_csv(Path("AOa_holdings.csv"),skiprows=9).dropna().iloc[0:10,0:6].set_index("Ticker")
+itot_hold = pd.read_csv(Path("ITOT_holdings.csv"),skiprows=9).dropna().iloc[0:10,0:6].set_index("Ticker")
+
+
+# In[43]:
 
 
 # ----------------------------------------------------------------------------------
@@ -1347,8 +1378,25 @@ import streamlit as st
 import pandas as pd
 import time
 import numpy as np
+from PIL import Image
 
 st.title('Welcome to T.Bot')
+slide_1 = Image.open("slide_1.png")
+st.image(slide_1, use_column_width=True)
+slide_2 = Image.open("slide_2.png")
+st.image(slide_2, use_column_width=True)
+slide_3 = Image.open("slide_3.png")
+st.image(slide_3, use_column_width=True)
+slide_4 = Image.open("slide_4.png")
+st.image(slide_4, use_column_width=True)
+slide_5 = Image.open("slide_5.png")
+st.image(slide_5, use_column_width=True)
+slide_6 = Image.open("slide_6.png")
+st.image(slide_6, use_column_width=True)
+slide_7 = Image.open("slide_7.png")
+st.image(slide_7, use_column_width=True)
+slide_8 = Image.open("slide_8.png")
+st.image(slide_8, use_column_width=True)
 st.write("Please enter your information in the sidebar" )
 st.write('________________________________________________________________')
 st.write("Your Personal Infomation:")
@@ -1412,6 +1460,24 @@ portfolios = {
 if risk_tolerance == 1:
     st.write('Your optimal investment portfolio:', portfolios[1]["name"])
     st.write('This portfolio invests in iShares AOM ETF and maintains a 40% allocation to Stocks and 60% allocation to Bonds.')
+    st.write('WHY AOM?')
+    st.write('1. A simple way to build a diversified core portfolio based on moderate risk considerations using one low-cost fund')
+    st.write('2. Harness the experience of BlackRock and the efficiency of iShares ETFs to get a broad mix of bonds and global stocks')
+    st.write('3. Use to establish a long-term, balanced portfolio and combine with other funds for particular needs like income')
+    st.write('________________________________________________________________')
+
+    st.write('INVESTMENT OBJECTIVE')
+    st.write('The iShares Core Moderate Allocation ETF seeks to track the investment results of an index composed of a portfolio of underlying equity and fixed income funds intended to represent a moderate target risk allocation strategy.')
+    st.write('________________________________________________________________')
+    
+    
+    st.write('PORTFOLIO HOLDINGS:')
+    st.dataframe(aom_hold)
+    st.write('________________________________________________________________')
+    
+    st.write('NET EXPENSE RATIO: 0.25%')
+    st.write('________________________________________________________________')
+       
     st.write('The following chart shows ALL CHARTS OF  AOM portfolio:')
     st.plotly_chart(figaom,use_container_width=True)
     #st.write('The following chart shows the AOM portfolio current asset allocation:')
@@ -1424,6 +1490,24 @@ if risk_tolerance == 1:
 elif risk_tolerance == 2:    
     st.write('Your optimal investment portfolio:', portfolios[2]["name"])
     st.write('This portfolio invests in iShares AOR ETF and maintains a 60% allocation to Stocks and 40% allocation to Bonds.')
+    st.write('This portfolio invests in iShares AOR ETF and maintains 60% allocation to Stocks and 40% allocation to Bonds.')
+    st.write('________________________________________________________________')
+    
+    st.write('WHY AOR?')
+    st.write('1. A simple way to build a diversified core portfolio focused on growth using one low-cost fund')
+    st.write('2. Harness the experience of BlackRock and the efficiency of iShares ETFs to get a broad mix of bonds and global stocks')
+    st.write('3. Use to establish a long-term, balanced portfolio and combine with other funds for particular needs like income')
+    st.write('________________________________________________________________')
+
+    st.write('INVESTMENT OBJECTIVE')
+    st.write('The iShares Core Growth Allocation ETF seeks to track the investment results of an index composed of a portfolio of underlying equity and fixed income funds intended to represent a growth allocation target risk strategy.')
+    st.write('________________________________________________________________')
+             
+    st.write('PORTFOLIO HOLDINGS:')
+    st.dataframe(aor_hold)
+    
+    st.write('NET EXPENSE RATIO: 0.25%')
+     
     st.write('The following chart shows ALL CHARTS OF  AOR portfolio:')
     st.plotly_chart(figaor,use_container_width=True)
     #st.write('The following chart shows the AOR portfolio current asset allocation:')
@@ -1436,6 +1520,26 @@ elif risk_tolerance == 2:
 elif risk_tolerance == 3:    
     st.write('Your optimal investment portfolio:', portfolios[3]["name"])
     st.write('This portfolio invests in iShares AOK ETF and maintains a 70% allocation to Stocks and 30% allocation to Bonds.')
+    st.write('This portfolio invests in iShares AOK ETF and maintains 70% allocation to Stocks and 30% allocation to Bonds.')
+    st.write('________________________________________________________________')
+    
+    st.write('WHY AOK?')
+    st.write('1. A simple way to build a diversified core portfolio based on conservative risk considerations using one low-cost fund')
+    st.write('2. Harness the experience of BlackRock and the efficiency of iShares ETFs to get a broad mix of bonds and global stocks')
+    st.write('3. Use to establish a long-term, balanced portfolio and combine with other funds for particular needs like income')
+    st.write('________________________________________________________________')
+    
+    
+    st.write('INVESTMENT OBJECTIVE')
+    st.write('The iShares Core Conservative Allocation ETF seeks to track the investment results of an index composed of a portfolio of underlying equity and fixed income funds intended to represent a conservative target risk allocation strategy.')
+    st.write('________________________________________________________________')
+             
+    st.write('PORTFOLIO HOLDINGS:')
+    st.dataframe(aok_hold)         
+    
+    st.write('NET EXPENSE RATIO: 0.25%')
+             
+
     st.write('The following chart shows ALL CHARTS OF AOK portfolio:')
     st.plotly_chart(figaok,use_container_width=True)
     #st.write('The following chart shows the AOK portfolio current asset allocation:')
@@ -1448,6 +1552,26 @@ elif risk_tolerance == 3:
 elif risk_tolerance == 4:    
     st.write('Your optimal investment portfolio:', portfolios[4]["name"])
     st.write('This portfolio invests in iShares AOA ETF and maintains a 80% allocation to Stocks and 20% allocation to Bonds.')
+    st.write('This portfolio invests in iShares AOA ETF and maintains 80% allocation to Stocks and 20% allocation to Bonds.')
+    st.write('________________________________________________________________')
+    
+    st.write('WHY AOA?')
+    st.write('1. A simple way to build a diversified core portfolio based on more aggressive risk considerations using one low-cost fund')
+    st.write('2. Harness the experience of BlackRock and the efficiency of iShares ETFs to get a broad mix of bonds and global stocks')
+    st.write('3. Use to establish a long-term, balanced portfolio and combine with other funds for particular needs like income')
+    st.write('________________________________________________________________')
+             
+        
+    st.write('INVESTMENT OBJECTIVE')
+    st.write('The iShares Core Aggressive Allocation ETF seeks to track the investment results of an index composed of a portfolio of underlying equity and fixed income funds intended to represent an aggressive target risk allocation strategy.')
+    st.write('________________________________________________________________')
+    
+    st.write('PORTFOLIO HOLDINGS:')
+    st.dataframe(aoa_hold)
+    
+    st.write('NET EXPENSE RATIO: 0.25%')
+             
+
     st.write('The following chart shows ALL CHARTS OF  AOA portfolio:')
     st.plotly_chart(figaoa,use_container_width=True)
     #st.write('The following chart shows the AOA portfolio current asset allocation:')
@@ -1460,6 +1584,23 @@ elif risk_tolerance == 4:
 else: 
     st.write('Your optimal investment portfolio:', portfolios[5]["name"])  
     st.write('This portfolio invests in iShares ITOT ETF and maintains a 100% allocation to US Stocks.')
+    st.write('WHY ITOT?')
+    st.write('1. Low-cost and convenient access to the total U.S. stock market in a single fund. ')
+    st.write('2. Exposure to the total U.S. stock market, ranging from some of the smallest to largest companies')
+    st.write('3. Use at the core of your portfolio to seek long-term growth')
+    st.write('________________________________________________________________')
+    
+    st.write('INVESTMENT OBJECTIVE')
+    st.write('The iShares Core S&P Total U.S. Stock Market ETF seeks to track the investment results of a broad-based index composed of U.S. equities.')
+    st.write('________________________________________________________________')
+             
+    st.write('PORTFOLIO TOP 10 HOLDINGS:')
+    st.dataframe(itot_hold)        
+    
+
+    st.write('NET EXPENSE RATIO: 0.03%')
+             
+
     st.write('The following chart shows ALL CHARTS OF  ITOT portfolio:')
     st.plotly_chart(figitot,use_container_width=True)
     #st.write('The following chart shows the ITOT portfolio current asset allocation:')
@@ -1469,6 +1610,12 @@ else:
     #st.write('Monte Carlo simulated mean cumulative return over 1-year:')
     #st.line_chart(intl_cs_simulated_MEAN_returns_df)
     st.write('________________________________________________________________')
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
