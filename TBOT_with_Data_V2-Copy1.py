@@ -152,6 +152,7 @@ intl_cs_df=alpaca_df(tickers)
 
 # MONTE CARLO CSV INPUT
 # Read csv data files
+#@st.cache
 intl_cc_simulated_MEAN_returns_df = pd.read_csv(Path("CC.csv"),skiprows=0).dropna()
 intl_cm_simulated_MEAN_returns_df = pd.read_csv(Path("CM.csv"),skiprows=0).dropna()
 intl_cg_simulated_MEAN_returns_df = pd.read_csv(Path("CG.csv"),skiprows=0).dropna()
@@ -216,6 +217,7 @@ intl_cc_title="International Core Conservative Allocation"
 #intl_cc_simulated_MEAN_returns_df.plot(title=f"Simulated Daily Returns Behavior of {intl_cc_title} Portfolio")"""
 
 # Multiply an initial investment by the daily returns of simulated stock prices to return the progression of daily returns in terms of money
+# @st.cache
 intl_cc_cumulative_pnl = initial_investment * intl_cc_simulated_MEAN_returns_df
 
 # Use the 'plot' function to create a chart of the simulated profits/losses
@@ -258,6 +260,7 @@ intl_cm_title="International Core Moderate Allocation"
 #intl_cm_simulated_MEAN_returns_df.plot(title=f"Simulated Daily Returns Behavior of {intl_cm_title} Portfolio")
 
 # Multiply an initial investment by the daily returns of simulated stock prices to return the progression of daily returns in terms of money
+#@st.cache
 intl_cm_cumulative_pnl = initial_investment * intl_cm_simulated_MEAN_returns_df
 
 # Use the 'plot' function to create a chart of the simulated profits/losses
@@ -299,6 +302,7 @@ intl_cg_title="International Core Growth Allocation"
 #intl_cg_simulated_MEAN_returns_df.plot(title=f"Simulated Daily Returns Behavior of {intl_cg_title} Portfolio")
 
 # Multiply an initial investment by the daily returns of simulated stock prices to return the progression of daily returns in terms of money
+#@st.cache
 intl_cg_cumulative_pnl = initial_investment * intl_cg_simulated_MEAN_returns_df
 
 # Use the 'plot' function to create a chart of the simulated profits/losses
@@ -340,6 +344,7 @@ intl_ca_title="International Core Aggressive Allocation"
 # #intl_ca_simulated_MEAN_returns_df.plot(title=f"Simulated Daily Returns Behavior of {intl_ca_title} Portfolio")
 
 # Multiply an initial investment by the daily returns of simulated stock prices to return the progression of daily returns in terms of money
+#@st.cache
 intl_ca_cumulative_pnl = initial_investment * intl_ca_simulated_MEAN_returns_df
 
 # Use the 'plot' function to create a chart of the simulated profits/losses
@@ -381,6 +386,7 @@ intl_cs_title="Core S&P Total US Stock Market"
 # #intl_cs_simulated_MEAN_returns_df.plot(title=f"Simulated Daily Returns Behavior of {intl_cs_title} Portfolio")
 
 # Multiply an initial investment by the daily returns of simulated stock prices to return the progression of daily returns in terms of money
+#@st.cache
 intl_cs_cumulative_pnl = initial_investment * intl_cs_simulated_MEAN_returns_df
 
 # Use the 'plot' function to create a chart of the simulated profits/losses
@@ -416,6 +422,7 @@ mean_pnl_forecasts_df = pd.concat([intl_cc_cumulative_pnl,
 
 # Portfolio Geographical Mix
 # Read csv data files
+#@st.cache
 aok_facts = pd.read_csv(Path("AOK_holdings.csv"),skiprows=29).dropna()
 aom_facts = pd.read_csv(Path("AOM_holdings.csv"),skiprows=29).dropna()
 aor_facts = pd.read_csv(Path("AOR_holdings.csv"),skiprows=29).dropna()
@@ -426,7 +433,7 @@ itot_facts = pd.read_csv(Path("ITOT_holdings.csv"),skiprows=9).dropna()
 
 # 1. AOK - iShares Core Conservative ETF Allocation
 # Get Portfolio Geographical Mix
-aok_facts.head()
+#aok_facts.head()
 #Calculate Geo Mix
 aok_geo_mix=aok_facts[["Location","Market Value","Weight (%)"]].set_index("Location")
 aok_geo_mix["Market Value"]=aok_geo_mix["Market Value"].str.replace(",","").astype('float')
@@ -494,6 +501,7 @@ aok_ac_plotly=aok_ac.reset_index()
 # Get Portfolio Geographical Mix
 #aom_facts.head()
 #Calculate Geo Mix
+#@st.cache
 aom_geo_mix=aom_facts[["Location","Market Value","Weight (%)"]].set_index("Location")
 aom_geo_mix["Market Value"]=aom_geo_mix["Market Value"].str.replace(",","").astype('float')
 aom_gm=aom_geo_mix.groupby("Location").sum().sort_values("Market Value", ascending=False).head(10)
@@ -522,6 +530,7 @@ aom_gm_plotly["Country"]=["USA","JPN","CHN","GBR","FRA","CAN","DEU","CHE","AUS",
 # map_aom.show()
 
 # Get Portfolio Asset Mix
+#@st.cache
 aom_asset_classes=aom_facts[["Asset Class","Market Value"]].set_index("Asset Class")
 aom_asset_classes["Market Value"]=aom_asset_classes["Market Value"].str.replace(",","").astype('float')
 aom_ac=aom_asset_classes.groupby("Asset Class").sum().sort_values("Market Value", ascending=False).head(4)
@@ -546,6 +555,7 @@ aom_ac_plotly=aom_ac.reset_index()
 #aor_facts.head()
 
 #Calculate Geo Mix
+#@st.cache
 aor_geo_mix=aor_facts[["Location","Market Value","Weight (%)"]].set_index("Location")
 aor_geo_mix["Market Value"]=aor_geo_mix["Market Value"].str.replace(",","").astype('float')
 aor_gm=aor_geo_mix.groupby("Location").sum().sort_values("Market Value", ascending=False).head(10)
@@ -571,6 +581,7 @@ aor_gm_plotly["Country"]=["USA","JPN","CHN","GBR","FRA","CAN","DEU","CHE","AUS",
 # map_aor.show()
 
 # Get Portfolio Asset Mix
+#@st.cache
 aor_asset_classes=aor_facts[["Asset Class","Market Value"]].set_index("Asset Class")
 aor_asset_classes["Market Value"]=aor_asset_classes["Market Value"].str.replace(",","").astype('float')
 aor_ac=aor_asset_classes.groupby("Asset Class").sum().sort_values("Market Value", ascending=False).head(4)
@@ -594,6 +605,7 @@ aor_ac_plotly=aor_ac.reset_index()
 aoa_facts.head()
 
 #Calculate Geo Mix
+# @st.cache
 aoa_geo_mix=aoa_facts[["Location","Market Value","Weight (%)"]].set_index("Location")
 aoa_geo_mix["Market Value"]=aoa_geo_mix["Market Value"].str.replace(",","").astype('float')
 aoa_gm=aor_geo_mix.groupby("Location").sum().sort_values("Market Value", ascending=False).head(10)
@@ -618,6 +630,7 @@ aoa_gm_plotly["Country"]=["USA","JPN","CHN","GBR","FRA","CAN","DEU","CHE","AUS",
 # map_aoa.show()
 
 # Get Portfolio Asset Mix
+# @st.cache
 aoa_asset_classes=aoa_facts[["Asset Class","Market Value"]].set_index("Asset Class")
 aoa_asset_classes["Market Value"]=aoa_asset_classes["Market Value"].str.replace(",","").astype('float')
 aoa_ac=aoa_asset_classes.groupby("Asset Class").sum().sort_values("Market Value", ascending=False).head(4)
@@ -641,6 +654,7 @@ aoa_ac_plotly=aoa_ac.reset_index()
 #itot_facts.head()
 
 #Calculate Geo Mix
+# @st.cache
 itot_geo_mix=itot_facts[["Location","Market Value","Weight (%)"]].set_index("Location")
 itot_geo_mix["Market Value"]=itot_geo_mix["Market Value"].str.replace(",","").astype('float')
 itot_gm=itot_geo_mix.groupby("Location").sum().sort_values("Market Value", ascending=False).head(3)
@@ -666,6 +680,7 @@ itot_gm_plotly.head(10)
 
 
 # Get Portfolio Asset Mix
+# @st.cache
 itot_asset_classes=itot_facts[["Asset Class","Market Value"]].set_index("Asset Class")
 itot_asset_classes["Market Value"]=itot_asset_classes["Market Value"].str.replace(",","").astype('float')
 itot_ac=itot_asset_classes.groupby("Asset Class").sum().sort_values("Market Value", ascending=False).head(3)
@@ -691,7 +706,7 @@ itot_ac_plotly=itot_ac.reset_index()
 # Read the CSV into a DataFrame using Pandas
 
 # Reading AOK ETF and set the `date` as the index
-
+# @st.cache
 aok_path = Path("aok.csv")
 aok_returns = pd.read_csv(aok_path, index_col="Date", infer_datetime_format=True, parse_dates=True)
 
@@ -738,7 +753,7 @@ aok_returns.drop(columns=['Open', 'High', 'Low', 'Adj Close', 'Volume'], axis=1,
 # 2. AOM - iShares Core Moderate ETF Allocation
 # Read the CSV into a DataFrame using Pandas
 # # Reading AOK ETF and set the `date` as the index
-
+# @st.cache
 aom_path = Path("aom.csv")
 aom_returns = pd.read_csv(aom_path, index_col="Date", infer_datetime_format=True, parse_dates=True)
 
@@ -778,6 +793,7 @@ aom_returns.drop(columns=['Open', 'High', 'Low', 'Adj Close', 'Volume'], axis=1,
 # 3. AOR - iShares Core Growth ETF Allocation
 # Read the CSV into a DataFrame using Pandas
 # # Reading AOR ETF and set the `date` as the index
+# @st.cache
 aor_path = Path("aor.csv")
 aor_returns = pd.read_csv(aor_path, index_col="Date", infer_datetime_format=True, parse_dates=True)
 
@@ -818,6 +834,7 @@ aor_returns.drop(columns=['Open', 'High', 'Low', 'Adj Close', 'Volume'], axis=1,
 # 4. AOA - iShares Core Aggressive ETF Allocation
 # Read the CSV into a DataFrame using Pandas
 # # Reading AOR ETF and set the `date` as the index
+# @st.cache
 aoa_path = Path("aoa.csv")
 aoa_returns = pd.read_csv(aoa_path, index_col="Date", infer_datetime_format=True, parse_dates=True)
 
@@ -857,6 +874,7 @@ aoa_returns.drop(columns=['Open', 'High', 'Low', 'Adj Close', 'Volume'], axis=1,
 # 5. ITOT - iShares Core S&P Total U.S. Stock Market ETF
 # Read the CSV into a DataFrame using Pandas¶
 # # Reading ITOT ETF and set the `date` as the index
+# @st.cache
 itot_path = Path("itot.csv")
 itot_returns = pd.read_csv(itot_path, index_col="Date", infer_datetime_format=True, parse_dates=True)
 
@@ -894,6 +912,7 @@ itot_returns.drop(columns=['Open', 'High', 'Low', 'Adj Close', 'Volume'], axis=1
 
 # Combine all ETF's in a single DataFrame
 # # Combine all portfolio in a single DataFrame
+# @st.cache
 the_portfolio = pd.concat((aok_returns, aom_returns, aor_returns, aoa_returns, itot_returns), axis = 1, join= "inner")
 the_portfolio.sort_index(ascending = True, inplace = True)
 #the_portfolio.head(10)
