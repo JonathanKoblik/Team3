@@ -19,10 +19,6 @@ The project was developed in two stages:
 The Jupiter Notebook file developed in Part 1 of the project required the following libraries and dependencies:
 
 ```
-import panel as pn
-
-pn.extension('plotly')
-
 import plotly.express as px
 
 import plotly.graph_objects as go
@@ -34,8 +30,6 @@ import pandas as pd
 import numpy as np
 
 import hvplot.pandas
-
-import matplotlib.pyplot as plt
 
 import os
 
@@ -77,10 +71,10 @@ Now run the hello world app to make sure everything is working:
 streamlit hello
 ```
 # Running the WebApp
-The code for the webapp demonstrated during the presentation is stored in the file TBOT_with_Data_V2-Copy1.py. To run the webapp, please navigate to the folder where the file is saved and run the following command:
+The code for the webapp demonstrated during the presentation is stored in the file TboTFinal.py. To run the webapp, please navigate to the folder where the file is saved and run the following command:
 
 ```
-streamlit run TBOT_with_Data_V2-Copy1.py
+streamlit run TboTFinal.py
 
 ```
 
