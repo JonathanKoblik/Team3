@@ -72,11 +72,9 @@ streamlit hello
 ```
 # Converting the ipynb to py (optional)
 
-To convert ipynb file to py file, please run the following code, this is optional because the py file is already included in this folder. 
 
 ```
 jupyter nbconvert --to python TboTFinal_v2.ipynb
-
 ```
 
 
