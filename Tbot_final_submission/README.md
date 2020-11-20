@@ -83,7 +83,7 @@ jupyter nbconvert --to python TboTFinal_v2.ipynb
 The code for the webapp demonstrated during the presentation is stored in the file TboTFinal.py. To run the webapp, please navigate to the folder where the file is saved and run the following command:
 
 ```
-streamlit run TboTFinal_v2.ipynb
+streamlit run TboTFinal_v2.py
 
 ```
 
