@@ -71,7 +71,8 @@ Now run the hello world app to make sure everything is working:
 streamlit hello
 ```
 # Converting the ipynb to py (optional)
-The code for the webapp demonstrated during the presentation is stored in the file TboTFinal.py. To run the webapp, please navigate to the folder where the file is saved and run the following command:
+
+To convert ipynb file to py file, please run the following code, this is optional because the py file is already included in this folder. 
 
 ```
 jupyter nbconvert --to python TboTFinal_v2.ipynb
