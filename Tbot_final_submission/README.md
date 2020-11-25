@@ -1,6 +1,6 @@
 # T.BOT
 
-## Personalized Rob-Advisor
+## Personalized Robo-Advisor
 
 ### Team 3: Greg, Vishal, Rimi, Dmitry & Jonathan
 ________________________
@@ -79,7 +79,7 @@ jupyter nbconvert --to python TboTFinal_v2.ipynb
 
 
 # Running the WebApp
-The code for the webapp demonstrated during the presentation is stored in the file TboTFinal.py. To run the webapp, please navigate to the folder where the file is saved and run the following command:
+The code for the webapp demonstrated during the presentation is stored in the file TboTFinal_v2.py. To run the webapp, please navigate to the folder where the file is saved and run the following command:
 
 ```
 streamlit run TboTFinal_v2.py
