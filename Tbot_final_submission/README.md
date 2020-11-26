@@ -39,15 +39,12 @@ from dotenv import load_dotenv
 
 import alpaca_trade_api as tradeapi
 
-from MCForecastTools import MCSimulation
-
 plt.style.use('fivethirtyeight')
 
 from scipy import stats
 
 import datetime
 
-%matplotlib inline
 ```
 Please note that some of these libraries were used to produce charts in .ipynb and then later had to be disabled once converted into .py file since they were found to be incompatible with Streamlit.
 
@@ -116,12 +113,9 @@ The user of the code needs to use his/her own Alpaca and Mapbox keys to run the 
 
 Examples:
 
-
-![Core_Conservative_by_country](cc_by_country.png)
-![Core_Conservative_mapbox](cc_mapbox.png)
-![Core_Conservative_by_asset_class](cc_by_asset_class.png)
-
-
+![Team3/archive/Core_Conservative_by_country](cc_by_country.png)
+![Team3/archive/Core_Conservative_mapbox](cc_mapbox.png)
+![Team3/archive/Core_Conservative_by_asset_class](cc_by_asset_class.png)
 
 •	Perform Quantitative Analysis of Portfolios
 
