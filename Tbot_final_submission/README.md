@@ -113,9 +113,9 @@ The user of the code needs to use his/her own Alpaca and Mapbox keys to run the 
 
 Examples:
 
-![Team3/archive/Core_Conservative_by_country](cc_by_country.png)
-![Team3/archive/Core_Conservative_mapbox](cc_mapbox.png)
-![Team3/archive/Core_Conservative_by_asset_class](cc_by_asset_class.png)
+![\Tbot_final_submission\misc\Core_Conservative_by_country](cc_by_country.png)
+![\Tbot_final_submission\misc\Core_Conservative_mapbox](cc_mapbox.png)
+![\Tbot_final_submission\misc\Core_Conservative_by_asset_class](cc_by_asset_class.png)
 
 •	Perform Quantitative Analysis of Portfolios
 
